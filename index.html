@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Homework 4 app</title>
+  </head>
+
+  <body>
+    <header>
+      <h1>Trivia Time!</h1>
+    </header>
+
+    <main>
+      <section class='get-question'>
+        <h2>Get Question</h2>
+        <p>Question:</p><input id="trivia-question"><p>Question ID:</p><input id="id"><button>Get Question</button>
+      </section>
+
+      <section class='post-answer'>
+        <h2>Post Answer</h2>
+        <input id="possible-answer" placeholder="Your Answer"><input id="question-id" placeholder="Question ID"><button>Post Answer</button><input id="result">   
+      </section>
+
+      <section class='post-question'>
+        <h2>Post New Question</h2>
+        <input id = "new-question" placeholder="Who played Al Bundy?"><input id="new-answer" placeholder="Ed O'Neil"><button>Post New Question</button>
+      </section>   
+
+      <section class='get-score'>
+        <h2>Get Score</h2>
+        <p>Right:</p><input id="right"><p>Wrong:</p><input id="wrong"><button>Get Score</button>        
+      </section>      
+
+    </main>
+
+    <footer>
+    </footer>
+
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
