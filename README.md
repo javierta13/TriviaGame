@@ -29,7 +29,7 @@
 
 
 ##Run server.js
-        node server.js
+    node server.js
 
 ##Route names
     /getQuestion
