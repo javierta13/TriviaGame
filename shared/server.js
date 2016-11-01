@@ -1,6 +1,3 @@
-// --------------------------------------------------------------------------------------
-//Server stuff
-
 var express = require('express'),
     http = require('http'),
     app = express(),
@@ -92,7 +89,7 @@ app.post('/postQuestion', function (req, res) {
             		console.log("the object was saved!");
         	}
     	});
-	res.json({'newQuestion': newQuestion, 'newAnswer': newAnswer});
+	res.json({"success": "Question successfully posted!"});
 });
 
 
