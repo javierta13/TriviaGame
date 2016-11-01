@@ -7,7 +7,7 @@ var main = function ()
 
 	var get = function (choice) 
     {
-
+        //getQuestion
         if(choice === 1)
         {       	
         	url += 'getQuestion';
@@ -25,7 +25,8 @@ var main = function ()
             url = 'http://localhost:3000/';
         }        
         else
-        {       	
+        {
+            //getScore       	
         	url += 'getScore';
             
             $.ajax(
@@ -46,7 +47,7 @@ var main = function ()
 
 	var post = function (choice) 
     {
-
+        //postQuestion
         if(choice === 1)
         {
 			var newQuestion;
@@ -65,12 +66,12 @@ var main = function ()
                 contentType: 'application/json',
                 success: function(data)
                 {
-                	console.log(data.newQuestion);
-                    alert(data.newAnswer);
+                    alert("Question Successfully Added!")
                 }
             });
             url = 'http://localhost:3000/';
-        }        
+        }
+        //postAnswer        
         else
         {
         	url += 'postAnswer';        	
@@ -79,8 +80,6 @@ var main = function ()
 
             possibleAnswer = $('#possible-answer').val();
             questionID = $('#question-id').val();
-            console.log(possibleAnswer);
-            console.log(questionID);
             $.ajax(
             {
             url: url, 
@@ -116,7 +115,6 @@ var main = function ()
     $('.get-score button').on('click', function (event) {
         get(2);
     });
-
 
 };
 
