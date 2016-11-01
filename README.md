@@ -8,7 +8,10 @@
     Use these commands in the terminal to get vagrant up and getting ssh working
         sudo vagrant up
         sudo vagrant ssh
-
+    Use these commands in the terminal to halt the ssh and vagrant
+        sudo halt
+        sudo vagrant halt
+        
 ##Starting redis
     Use this command to start redis
         $HOME/redis/src/redis-server
