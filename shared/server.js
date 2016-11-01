@@ -2,12 +2,12 @@
 //Server stuff
 
 var express = require('express'),
-	http = require('http'),
-	app = express(),
-	bodyParser = require('body-parser'),
-	mongoose = require('mongoose'),
-	mongodb = require('mongodb'),
-	MongoClient = mongodb.MongoClient,
+    http = require('http'),
+    app = express(),
+    bodyParser = require('body-parser'),
+    mongoose = require('mongoose'),
+    mongodb = require('mongodb'),
+    MongoClient = mongodb.MongoClient,
     redis = require('redis');
 
 
@@ -17,17 +17,16 @@ mongoose.connect('mongodb://localhost:27017/my_dee_bee');
 
 db.on('error', console.error);
 db.once('open', function() {
-  // Create your schemas and models here.
-
-  console.log("connection to database success!");
+	// Create your schemas and models here.
+	console.log("connection to database success!");
 });
 
 //Create Schema
 var Schema = mongoose.Schema;
 var QSchema = new Schema({
-    question: String,
-    answer: String,
-    id: Number
+	question: String,
+    	answer: String,
+    	id: Number
 });
 
 // Mongoose Model definition for questions
@@ -49,12 +48,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-//make sure count is the size of the database entries at start
+//Database size is 0 at start
 var count = 0;
 
 app.get('/getQuestion', function (req, res) { 
-    var q, i;
-    i = count;
+	var q, i;
+    	i = count;
     
 	if(count === 0)
 	{
@@ -62,39 +61,37 @@ app.get('/getQuestion', function (req, res) {
 	}
 	else
 	{
-    	//queries the question based on id being 1
+    		//queries the question based on id being 1
 		Question.findOne({ id: i }, function(err, questionObject) {
-        	if (err) return console.error(err);
-        	console.log(questionObject);
-        	q = questionObject.question;
-        	i = questionObject.id;
+        		if (err) return console.error(err);
+        		console.log(questionObject);
+        		q = questionObject.question;
+        		i = questionObject.id;
 
-        	//moved res.json inside function for scope
-        	res.json({"question": q, "id": i});
-    	});
+        		//moved res.json inside function for scope
+        		res.json({"question": q, "id": i});
+    		});
 	}
 });
 
 app.post('/postQuestion', function (req, res) { 
+	var newQuestion = req.body.question;
+    	var newAnswer = req.body.answer;
+    	count += 1;
+    	var id = count;
 
-    var newQuestion = req.body.question;
-    var newAnswer = req.body.answer;
-    count += 1;
-    var id = count;
+    	var q1 = new Question({"question":newQuestion, "answer":newAnswer, "id":id});
 
-    var q1 = new Question({"question":newQuestion, "answer":newAnswer, "id":id});
-
-    // save the user
-    q1.save(function (err) { 
-        if (err !== null) {
-            // object was not saved!
-            console.log(err); }
-        else{
-            console.log("the object was saved!");
-        }
-    });
-
-
+    	// save the user
+    	q1.save(function (err) { 
+        	if (err !== null) {
+            		// object was not saved!
+            		console.log(err); 
+		}
+        	else{
+            		console.log("the object was saved!");
+        	}
+    	});
 	res.json({'newQuestion': newQuestion, 'newAnswer': newAnswer});
 });
 
@@ -102,26 +99,25 @@ app.post('/postQuestion', function (req, res) {
 
 app.post('/postAnswer', function (req, res) { 
 	var collection = db.collection('questions');
-    var cursor = collection.find();
-   	var answer = req.body.answer;
-   	var id = req.body.id;    
-   	id = parseInt(id);
-    cursor.forEach(function(Question) {
-
-        if(Question.id === id) 
-        {
-        	if(Question.answer === answer) 
-        	{
-            	redisClient.incr('right');
-            	res.json({"result": "CORRECT!"});
-        	}
-        	else
-        	{
-            	redisClient.incr('wrong');
-            	res.json({"result": "WRONG"});
-        	}
-        }
-    });
+    	var cursor = collection.find();
+    	var answer = req.body.answer;
+    	var id = req.body.id;    
+    	id = parseInt(id);
+    	cursor.forEach(function(Question) {
+		if(Question.id === id) 
+            	{
+        		if(Question.answer === answer) 
+        		{
+            			redisClient.incr('right');
+            			res.json({"result": "CORRECT!"});
+        		}
+        		else
+        		{
+            			redisClient.incr('wrong');
+            			res.json({"result": "WRONG"});
+        		}
+           	}
+    	});
 });	
 
 
