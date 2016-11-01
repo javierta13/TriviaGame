@@ -65,7 +65,7 @@ var main = function ()
                 		contentType: 'application/json',
                 		success: function(data)
                 		{
-                    			alert("Question Successfully Added!")
+                    			alert(data.success);
                 		}
             		});
             		url = 'http://localhost:3000/';
