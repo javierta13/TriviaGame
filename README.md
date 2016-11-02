@@ -4,6 +4,10 @@
 
 ##server.js, app.js, and index.html located in shared folder
 
+##Must install npm and install dependencies
+    sudo apt-get install npm
+    npm install 
+
 ##Vagrant
     Use these commands in the terminal to get vagrant up and getting ssh working
         sudo vagrant up
