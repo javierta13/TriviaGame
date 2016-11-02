@@ -7,7 +7,8 @@
 ##Must install npm and install dependencies
     sudo apt-get install npm
     npm install 
-
+##Note
+    For testing we did not use vagrant.  We tested on Mac but thought it more fitting to use vagrant.
 ##Vagrant
     Use these commands in the terminal to get vagrant up and getting ssh working
         sudo vagrant up
