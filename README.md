@@ -9,6 +9,11 @@
     npm install 
 ##Note
     For testing we did not use vagrant.  We tested on Mac but thought it more fitting to use vagrant.
+    
+    Must drop "questions" collection if server.js is going to be re-run
+        Use the following commands in mongoose
+            use my_dee_bee
+            db.questions.drop()  
 ##Vagrant
     Use these commands in the terminal to get vagrant up and getting ssh working
         sudo vagrant up
